@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TalcoCalendar</title>
+<meta name="theme-color" content="#4f8cff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TalcoCalendar">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="bg"><i></i><i></i><i></i></div>
+<div class="app">
+ <header class="glass top">
+  <img src="icon.svg" class="logo" alt=""><h1>Talco<span>Calendar</span></h1>
+  <button id="today" class="pillbtn">Aujourd’hui</button>
+  <button id="prev" class="ib" aria-label="Précédent">‹</button><button id="next" class="ib" aria-label="Suivant">›</button>
+  <h2 id="title"></h2>
+  <button id="theme" class="ib" aria-label="Thème">◐</button>
+ </header>
+ <div class="wrap">
+  <aside class="glass side">
+   <button id="create" class="create">＋ Créer</button>
+   <div id="mini"></div>
+   <div class="legend"><b>Calendriers</b><label><input type="checkbox" id="showEv" checked>Événements</label><label><input type="checkbox" id="showTk" checked>Tâches</label></div>
+  </aside>
+  <main id="view"></main>
+ </div>
+</div>
+<button id="fab" class="fab" aria-label="Créer">＋</button>
+<nav class="dock glass" id="dock">
+ <span class="pill"></span>
+ <button data-v="month"><i>▦</i>Mois</button><button data-v="week"><i>▥</i>Semaine</button><button data-v="day"><i>▤</i>Jour</button><button data-v="agenda"><i>☰</i>Agenda</button><button data-v="tasks"><i>✓</i>Tâches</button>
+</nav>
+<dialog id="dlg" class="glass modal"><form id="f" method="dialog">
+ <div class="tabs"><button type="button" data-t="ev" class="on">Événement</button><button type="button" data-t="tk">Tâche</button></div>
+ <input id="fTitle" placeholder="Ajouter un titre" required>
+ <div class="row"><label>Date<input type="date" id="fDate" required></label><label>Début<input type="time" id="fStart" value="09:00"></label><label class="onlyEv">Fin<input type="time" id="fEnd" value="10:00"></label></div>
+ <label class="chk onlyEv"><input type="checkbox" id="fAll">Toute la journée</label>
+ <div class="row onlyEv"><label>Répétition<select id="fRep"><option value="none">Ne se répète pas</option><option value="daily">Tous les jours</option><option value="weekly">Toutes les semaines</option><option value="monthly">Tous les mois</option><option value="yearly">Tous les ans</option></select></label>
+ <label>Notification<select id="fNot"><option value="-1">Aucune</option><option value="0">À l’heure</option><option value="5">5 min avant</option><option value="10" selected>10 min avant</option><option value="30">30 min avant</option><option value="60">1 h avant</option><option value="1440">1 jour avant</option></select></label></div>
+ <input id="fLoc" class="onlyEv" placeholder="Lieu">
+ <textarea id="fDesc" class="onlyEv" placeholder="Description" rows="2"></textarea>
+ <div class="colors onlyEv" id="fCol"></div>
+ <div class="act"><button type="button" id="del" class="danger">Supprimer</button><button type="button" id="cancel">Annuler</button><button type="submit" class="primary">Enregistrer</button></div>
+</form></dialog>
+<div id="toast" class="toast glass"></div>
+<script src="app.js"></script>
+</body></html>
